@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+header{
+    position: sticky;
+    top: 0px;
+   
+}
+header .right{
+    background-color: #035fae;
+    border-radius: 20px 20px 0px 20px;
+    padding: 9px 28px;
+    color: white;
+    
+}
+/* <!-- close header --> */
+.banner{
+    background-image: url("https://packshifts.in/images/banner.jpg");
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+   
+}

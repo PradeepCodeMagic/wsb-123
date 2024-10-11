@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <!-- <div class="box">
+            <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/smartwatch/x/1/t/-original-imagtvgupqterf6q.jpeg?q=70"
+                alt="">
+            <h3>title</h3>
+            <h4>Prices:-</h4>
+        </div> -->
+
+    </div>
+</body>
+
+<script>
+
+    let main = document.querySelector(".main")
+
+
+    let displaytData = () => {
+
+
+        fetch("https://dummyjson.com/products?limit=52")
+            .then((ress) => {
+                return ress.json()
+            })
+            .then((finalRess) => {
+                let AllData = finalRess.products
+
+                main.innerHTML=""
+                AllData.map((v, i) => {
+
+                    console.log(v)
+                    main.innerHTML += `
+                     <div class="box" >
+                            <img src=${v.thumbnail} alt="">
+                            <h3>title ${v.title} </h3> 
+                            <h4>price:- ${v.price} </h4>
+                    </div>
+                  
+                    `
+                })
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+
+
+
+
+
+
+    }
+
+    displaytData()
+
+    // i=i+1
+    // i++
+    // ++i
+    // i+=1
+
+</script>
+
+</html>
