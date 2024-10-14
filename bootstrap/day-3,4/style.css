@@ -1,0 +1,85 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    height: 1200px;
+}
+header{
+    position: sticky !important;
+    top: 0px !important;
+    background-color: white;
+   
+}
+header .right{
+    background-color: #035fae;
+    border-radius: 20px 20px 0px 20px;
+    padding: 9px 28px;
+    color: white;
+    
+}
+/* <!-- close header --> */
+.banner{
+    background-image: url("https://packshifts.in/images/banner.jpg");
+    padding: 20px 0px;
+    background-size: cover;
+    background-position: center;
+   
+}
+
+.form{
+    background-color: #F3F3F3;
+}
+
+.form-control {
+    margin: 10px 0px;
+}
+
+.formHeading{
+    padding-top: 24px;
+    word-spacing: 1px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/*  */ 
+.SERVICES{
+    background-color:#F4F4F4 ;
+}
+.SERVICES-box{
+    background-color: #ccc;
+}
+.SERVICES-box p{
+   text-align: justify;
+   padding: 0px 10px;
+}
+
+/* happy */
+
+.happy{
+    width: 80%;
+    background-color: blue;
+    height: 200px;
+    border-radius: 20px;
+    margin: auto;
+    position: relative;
+}
+.yellow{
+    width: 20%;
+    height: 60%;
+    border-radius: 20px;
+    background-color: rgb(191, 222, 18);
+    position: absolute;
+    top: 19%;
+    left: -9%;
+
+}
+
+@media only screen and (min-width:0px) and (max-width:575px){
+    .yellow{
+        
+        top: 5%;
+        left: 39%;
+    
+    }
+}
