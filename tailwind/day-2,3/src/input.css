@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
+
+.ws{
+    width: 200px;
+    height: 200px;
+}
+
 @tailwind utilities;
+
+
