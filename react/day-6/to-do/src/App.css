@@ -1,0 +1,36 @@
+
+
+.main{
+  width: 1000px;
+  margin: 20px auto;
+
+}
+.main input{
+  width: 60%;
+  padding: 10px;
+  border: none;
+}
+.main button{
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: skyblue;
+  border: none;
+  outline: none;
+}
+.row ul{
+  list-style: none;
+  padding: 0;
+
+}
+.row ul li{
+  padding: 10px;
+  background-color: orange;
+  margin: 5px;
+  position: relative;
+}
+.myItag{
+  color: red;
+  position: absolute;
+  right: 10px;
+  font-size: 20px;
+}
