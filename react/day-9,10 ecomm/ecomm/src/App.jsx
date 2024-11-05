@@ -2,6 +2,7 @@ import axios from "axios";
 import Header from "./Comman/Header";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 export default function App() {
@@ -19,13 +20,14 @@ export default function App() {
 
   // product
   const [allProduct,setAllProduct]=useState([])
+  const [loading,setLoading]=useState(false)
 
   const displayProduct=(url)=>{
  
     let API;
 
     if(url==undefined){
-      API="https://dummyjson.com/products"
+      API="https://dummyjson.com/products?limit=100"
     }
     else{
       API=url
@@ -34,6 +36,7 @@ export default function App() {
     axios.get(API)
     .then((ress)=>{
       setAllProduct(ress.data.products)
+      setLoading(true)
     })
     .catch((error)=>{
       console.log(error)
@@ -83,13 +86,27 @@ export default function App() {
           <h2 className="text-[25px] font-bold text-center py-[20px] "> All Product </h2>
           <div className="grid grid-cols-4 gap-5 ">
 
-          {allProduct.map((v)=>{
+          {/* {} */}
+
+          {loading==true ? 
+            allProduct.map((v)=>{
             return(
               <>
               <Card  data={v} />
               </>
             )
-          })}
+          })
+           :
+            <>
+              <Loading/>
+              <Loading/>
+              <Loading/>
+              <Loading/>
+              <Loading/>
+              <Loading/>
+              <Loading/>
+            </>
+             }
 
            
            
@@ -117,11 +134,23 @@ let Card = ({data}) => {
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{data.title}</h5>
         </a>
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-        <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <Link to={`/detail-page/${data.id}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
           Id:-
           {data.id}
-        </a>
+        </Link>
       </div>
     </div>
+  )
+}
+
+
+let Loading=()=>{
+  return(
+    
+
+<div className="flex items-center justify-center w-56 h-56 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+    <div className="px-3 py-1 text-xs font-medium leading-none text-center text-blue-800 bg-blue-200 rounded-full animate-pulse dark:bg-blue-900 dark:text-blue-200">loading...</div>
+</div>
+
   )
 }
