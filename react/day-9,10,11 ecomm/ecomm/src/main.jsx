@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Cart from './Cart.jsx'
 import Wishlist from './Wishlist.jsx'
+import EcommContext from './context/EcommContext.jsx'
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <EcommContext>
+        <RouterProvider router={router} />
+    </EcommContext>
   </StrictMode>,
 )

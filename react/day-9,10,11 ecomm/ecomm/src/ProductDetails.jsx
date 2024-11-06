@@ -2,8 +2,9 @@
 import { useParams } from 'react-router-dom';
 import Header from './Comman/Header';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CiHeart } from "react-icons/ci";
+import { main_context } from './context/EcommContext';
 
 export default function ProductDetails() {
 
@@ -13,7 +14,7 @@ export default function ProductDetails() {
   const [smallImg, setSmallImg] = useState([])
   const [bigImg, setBigImg] = useState([])
 
-  console.log(smallImg)
+  
 
   let singleProduct = () => {
     axios.get(`https://dummyjson.com/products/${Id}`)
@@ -32,7 +33,25 @@ export default function ProductDetails() {
     singleProduct()
   }, [])
 
+  // wish-work
+  let {wish,setWish}=useContext(main_context)
 
+
+  
+  let addToWishlist=(data)=>{
+      
+
+      let newObject={
+        image:data.thumbnail,
+        title:data.title,
+        price:data.price,
+        brand:data.brand,
+        quntity:1,
+
+      }
+
+      setWish([...wish,newObject])
+  }
 
   return (
     <>
@@ -120,7 +139,7 @@ export default function ProductDetails() {
                 <div className="flex mt-[20px] ">
                   <span className="title-font font-medium text-2xl text-gray-900">$ {singelData.price} </span>
 
-                  <button className="rounded-full w-10 h-10 bg-gray-200 p-0 -0 inline-flex items-center justify-center text-gray-500 ml-4">
+                  <button onClick={()=>addToWishlist(singelData)} className="rounded-full w-10 h-10 bg-gray-200 p-0 -0 inline-flex items-center justify-center text-gray-500 ml-4">
                     <CiHeart className='text-[22px]' />
                   </button>
                 </div>

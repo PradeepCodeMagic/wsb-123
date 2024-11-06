@@ -1,11 +1,14 @@
 import axios from "axios";
 import Header from "./Comman/Header";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { main_context } from "./context/EcommContext";
 
 
 export default function App() {
+  let {counter,setCounter}=useContext(main_context)
+
 
   const [allCat,setAllCat]=useState([])
   const displayCat=()=>{
@@ -59,6 +62,7 @@ export default function App() {
   return (
     <div>
       <Header />
+    
       <div className="grid grid-cols-[25%_auto] p-[20px] ">
         <div className="left px-5 ">
           <h2 className="text-[25px] font-bold text-center py-[20px] "> All Category </h2>
@@ -81,6 +85,7 @@ export default function App() {
 
         </div>
 
+            
 
         <div className="right">
           <h2 className="text-[25px] font-bold text-center py-[20px] "> All Product </h2>
