@@ -7,8 +7,12 @@ export default function EcommContext({children}) {
 
     const [wish,setWish]=useState([])
 
+    const [cart,setCart]=useState([])
+
+    let allState={wish,setWish,cart,setCart}
+
   return (
-    <main_context.Provider value={{wish,setWish}} >
+    <main_context.Provider value={allState} >
             {children}
     </main_context.Provider>
   )

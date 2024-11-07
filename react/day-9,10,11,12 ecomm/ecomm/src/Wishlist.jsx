@@ -6,6 +6,20 @@ export default function Wishlist() {
 
   let { wish, setWish } = useContext(main_context)
 
+  let deleteItem=(index)=>{
+      let finalData=wish.filter((p,k)=>k!=index)
+      setWish(finalData)
+  }
+
+  // moveTobBag
+
+  let {cart,setCart}=useContext(main_context)
+
+  console.log(cart)
+  let moveTobBag=(item)=>{
+    setCart([...cart,item])
+  }
+
 
   return (
     <div>
@@ -24,7 +38,7 @@ export default function Wishlist() {
 
         {wish.length > 0 ?
           wish.map((v, i) => {
-            console.log(v)
+            
             return (
               <>
                 <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
@@ -40,8 +54,8 @@ export default function Wishlist() {
                   </div>
 
                   <span className="text-center w-1/5 font-semibold text-sm">$400.00</span>
-                  <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"> Move To Bag </button>
-                  <button type="button" className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Remove</button>
+                  <button onClick={()=>moveTobBag(v)} type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"> Move To Bag </button>
+                  <button onClick={()=>deleteItem(i)} type="button" className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Remove</button>
                 </div>
               </>
             )

@@ -5,6 +5,9 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { CiHeart } from "react-icons/ci";
 import { main_context } from './context/EcommContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FaHeart } from "react-icons/fa";
 
 export default function ProductDetails() {
 
@@ -14,7 +17,7 @@ export default function ProductDetails() {
   const [smallImg, setSmallImg] = useState([])
   const [bigImg, setBigImg] = useState([])
 
-  
+
 
   let singleProduct = () => {
     axios.get(`https://dummyjson.com/products/${Id}`)
@@ -34,27 +37,39 @@ export default function ProductDetails() {
   }, [])
 
   // wish-work
-  let {wish,setWish}=useContext(main_context)
+  let { wish, setWish } = useContext(main_context)
 
+  const [heart, setHeart] = useState(false)
 
-  
-  let addToWishlist=(data)=>{
-      
+  console.log(heart)
 
-      let newObject={
-        image:data.thumbnail,
-        title:data.title,
-        price:data.price,
-        brand:data.brand,
-        quntity:1,
+  let addToWishlist = (data) => {
+    let newObject = {
+      image: data.thumbnail,
+      title: data.title,
+      price: data.price,
+      brand: data.brand,
+      quntity: 1,
+      id: data.id
 
-      }
+    }
 
-      setWish([...wish,newObject])
+    let ckeckData = wish.some((v) => v.id == newObject.id)
+
+    if (!ckeckData) {
+      setWish([...wish, newObject])
+      toast.success("Item add successfully")
+      setHeart(true)
+    }
+    else {
+      toast.error("Item Already in Wishlist")
+    }
+
   }
 
   return (
     <>
+      <ToastContainer />
       <Header />
       {loading == true ?
         <div className="">
@@ -66,7 +81,7 @@ export default function ProductDetails() {
                 {smallImg.map((v) => {
                   return (
                     <>
-                      <div className='bg-[white] text-center my-[5px] ' onMouseOver={()=>setBigImg(v)} >
+                      <div className='bg-[white] text-center my-[5px] ' onMouseOver={() => setBigImg(v)} >
                         <img src={v} className='w-[150px]  ' />
                       </div>
                     </>
@@ -139,13 +154,21 @@ export default function ProductDetails() {
                 <div className="flex mt-[20px] ">
                   <span className="title-font font-medium text-2xl text-gray-900">$ {singelData.price} </span>
 
-                  <button onClick={()=>addToWishlist(singelData)} className="rounded-full w-10 h-10 bg-gray-200 p-0 -0 inline-flex items-center justify-center text-gray-500 ml-4">
-                    <CiHeart className='text-[22px]' />
+                  <button onClick={() => addToWishlist(singelData)} className="rounded-full w-10 h-10 bg-gray-200 p-0 -0 inline-flex items-center justify-center text-gray-500 ml-4">
+
+                    {heart == true ?
+                      <FaHeart  className='text-[red]' />
+                      :
+                      <CiHeart className='text-[22px]' />
+                    }
+                    
+
+
                   </button>
                 </div>
               </div>
             </div>
-
+            
           </div>
         </div>
         :
