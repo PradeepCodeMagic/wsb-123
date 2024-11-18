@@ -1,0 +1,21 @@
+.slick-next:before {
+    font-family: slick;
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    right: 37px;
+    top: 0px;
+}
+
+@media only screen and (min-width:0px) and (max-width:772px){
+    .slick-next:before {
+        right: 0px;
+        top: 0px;
+    }
+    .rightDiv{
+        display: none;
+    }
+}
